@@ -1,0 +1,45 @@
+﻿@model BookStore.Models.BookViewModel
+
+@using (Html.BeginForm("Add", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    HtmlHelper.UnobtrusiveJavaScriptEnabled = false;
+    <h3 class="text-center">Добавити книжку</h3>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.BookCategoryId, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.DropDownListFor(m => m.BookCategoryId,
+           Model.bookCategories, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.BookCategoryId, "Виберіть категорію", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Name, "Введіть назву книжки", new { @class="text-danger"})
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Athor, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.TextBoxFor(m => m.Athor, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Athor, "Введіть автора", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+
+        </div>
+    </div>
+    <div class="form-group text-center">
+        <input type="submit" class="save-book btn btn-primary btn-group-sm" value="Зберегти" />
+    </div>
+}
+

@@ -1,0 +1,51 @@
+﻿@model BookStore.Models.ListBookViewModel
+@{
+    ViewBag.Title = "Список книг";
+}
+
+<div id="modalDialogAdd" class="modal fade">
+    <div id="modalContent" class="modal-dialog"></div>
+</div>
+
+<div class="">
+    <h1 class="text-center">Список книг</h1>
+
+    <p><a id="add-book" href="Home/Add" class="btn btn-primary btn-lg">Додати книгу</a></p>
+</div>
+
+<div class="table-responsive">
+    <table  id="table-body" class="table table-striped">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Категорія</td>
+                <td>Назва</td>
+                <td>Автор</td>
+                <td>Опис</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model.models)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.CategoryName</td>
+                    <td>@item.Name</td>
+                    <td>@item.Athor</td>
+                    <td>@item.Description</td>                    
+                    <td><span  class="delete-book btn btn-danger btn-sm" data-id="@item.Id">Видалити</span></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/site")
+    @Scripts.Render("~/bundles/validate")
+
+}
+
+
